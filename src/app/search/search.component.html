@@ -1,0 +1,14 @@
+<div class="search-container">
+  <form action="#">
+    <input
+      name="search-text"
+      type="text"
+      [(ngModel)]="searchText"
+      id="search-input"
+      placeholder="Search here..."
+    />
+    <button type="submit" id="search-btn" (click)="onSearchClicked()">
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+  </form>
+</div>
