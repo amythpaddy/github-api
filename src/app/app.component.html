@@ -1,1 +1,10 @@
 <app-search (searchFor)="onSearchClicked($event)" />
+<div class="container">
+  @if (apiResult()) {<app-repos
+    [reposData]="apiResult()!"
+    (repoSelected)="onRepoSelected($event)"
+  />}
+</div>
+@if (selectedItem()) {
+<app-info-popup [repoInfo]="selectedItem()" />
+}

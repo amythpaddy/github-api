@@ -24,7 +24,6 @@ export class SearchComponent {
   @Output() searchFor = new EventEmitter();
   searchText = '';
 
-  // todo: implement a event emitter on search click and move the fetching of data to app component
   onSearchClicked() {
     this.searchFor.emit(this.searchText);
   }

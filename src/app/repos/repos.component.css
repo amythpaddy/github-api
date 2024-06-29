@@ -1,0 +1,26 @@
+.information {
+  margin: 1rem 2rem;
+  padding: 1rem 2rem;
+  background: #2227;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.information:hover {
+  background: #222f;
+  scale: 1.1;
+  transition-duration: 100ms;
+}
+
+.title {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.sub {
+  display: block;
+  font-size: 15px;
+  color: #fff;
+}

@@ -1,1 +1,10 @@
-<p>repos works!</p>
+@if (reposData) { @if(!reposData.total_count){
+<h3>No repository found</h3>
+}@else {@for (repo of reposData.items; track repo.id) {
+<div class="information" (click)="onRepoSelected(repo)">
+  <span class="title">{{ repo.name }}</span>
+  <span class="sub">{{ repo.git_url }}</span>
+</div>
+}} } @else {
+<p>no data to show</p>
+}
