@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Item, Repo } from '../../model/repo.data';
+import { RepoItem, Repo } from '../../model/repo.data';
 
 @Component({
   selector: 'app-repos',
@@ -12,7 +12,7 @@ export class ReposComponent {
   @Input({ required: true }) reposData!: Repo;
   @Output() repoSelected = new EventEmitter();
 
-  onRepoSelected(repo: Item) {
+  onRepoSelected(repo: RepoItem) {
     this.repoSelected.emit(repo);
   }
 }

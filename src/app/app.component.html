@@ -1,10 +1,19 @@
 <app-search (searchFor)="onSearchClicked($event)" />
 <div class="container">
-  @if (apiResult()) {<app-repos
-    [reposData]="apiResult()!"
+  @if (repoApiResult()) {<app-repos
+    [reposData]="repoApiResult()!"
     (repoSelected)="onRepoSelected($event)"
-  />}
+  />} @if(userApiResult()){
+  <app-users
+    [usersData]="userApiResult()!"
+    (userSelected)="onUserSelected($event)"
+  />
+  }
 </div>
-@if (selectedItem()) {
-<app-info-popup [repoInfo]="selectedItem()" />
+@if (selectedRepo() || selectedUser()) {
+<app-info-popup
+  [selectedRepo]="selectedRepo()"
+  [selectedUser]="selectedUser()"
+  (closeThis)="clearSelectedItem()"
+/>
 }

@@ -1,0 +1,9 @@
+@if(!usersData.total_count){
+<h3>No Users found</h3>
+}@else{ @for (user of usersData.items; track user.id) {
+<div class="information" (click)="onUserSelected(user)">
+  <img [src]="user.avatar_url" class="pro_image" /><span class="title">{{
+    user.login
+  }}</span>
+</div>
+} }

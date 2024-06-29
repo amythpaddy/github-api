@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Item } from '../../model/repo.data';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RepoItem } from '../../model/repo.data';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserItem } from '../../model/user.data';
 
 @Component({
   selector: 'app-info-popup',
@@ -11,6 +12,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styleUrl: './info-popup.component.css',
 })
 export class InfoPopupComponent {
-  @Input() repoInfo: Item | undefined;
+  @Input() selectedRepo: RepoItem | undefined;
+  @Input() selectedUser: UserItem | undefined;
+  @Output() closeThis = new EventEmitter();
   faClose = faClose;
+
+  onCloseThis() {
+    this.closeThis.emit();
+  }
 }

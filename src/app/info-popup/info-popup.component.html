@@ -1,5 +1,26 @@
-<fa-icon [icon]="faClose" class="close_btn" />
-<h3>{{ repoInfo!.name }}</h3>
-<img src="{{ repoInfo!.owner.avatar_url }}" alt="user image" />
-<h5>{{ repoInfo!.owner.login }}</h5>
-<p>{{ repoInfo!.description }}</p>
+<div class="container">
+  @if(selectedRepo){
+  <h3>{{ selectedRepo!.name }}</h3>
+  <div class="owner_info">
+    <img
+      class="pro_image"
+      src="{{ selectedRepo!.owner.avatar_url }}"
+      alt="user image"
+    />
+    <h5>{{ selectedRepo!.owner.login }}</h5>
+  </div>
+  <p>{{ selectedRepo!.description }}</p>
+  } @else if(selectedUser){
+  <h3>{{ selectedUser!.login }}</h3>
+  <div class="owner_info">
+    <img
+      class="pro_image"
+      src="{{ selectedUser.avatar_url }}"
+      alt="user image"
+    />
+    <h5>{{ selectedUser!.html_url }}</h5>
+  </div>
+  <p>{{ selectedUser!.subscriptions_url }}</p>
+  }
+  <button (click)="onCloseThis()" class="close_btn">Close</button>
+</div>

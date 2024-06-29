@@ -1,10 +1,10 @@
 export type Repo = {
   total_count: number;
   incomplete_results: boolean;
-  items: Item[];
+  items: RepoItem[];
 };
 
-export type Item = {
+export type RepoItem = {
   id: number;
   node_id: string;
   name: string;
