@@ -3,10 +3,12 @@
   @if (repoApiResult()) {<app-repos
     [reposData]="repoApiResult()!"
     (repoSelected)="onRepoSelected($event)"
+    (changePage)="onRepoPageChange($event)"
   />} @if(userApiResult()){
   <app-users
     [usersData]="userApiResult()!"
     (userSelected)="onUserSelected($event)"
+    (changePage)="onUserPageChange($event)"
   />
   }
 </div>

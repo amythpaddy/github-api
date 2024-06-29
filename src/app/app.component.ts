@@ -33,13 +33,16 @@ export class AppComponent {
   selectedUser = signal<UserItem | undefined>(undefined);
 
   onSearchClicked(searchString: string) {
+    this.searchText = searchString;
     this.searchForRepository(searchString);
     this.searchForUser(searchString);
   }
 
-  searchForRepository(searchString: string) {
+  searchForRepository(searchString = this.searchText, pageNumber = 1) {
     const subscription = this.httpClient
-      .get<Repo>(`https://api.github.com/search/repositories?q=${searchString}`)
+      .get<Repo>(
+        `https://api.github.com/search/repositories?q=${searchString}&per_page=20&page=${pageNumber}`
+      )
       .subscribe({
         next: (resData) => {
           this.repoApiResult.set(resData);
@@ -49,9 +52,11 @@ export class AppComponent {
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
-  searchForUser(searchString: string) {
+  searchForUser(searchString: string, pageNumber = 1) {
     const subscription = this.httpClient
-      .get<User>(`https://api.github.com/search/users?q=${searchString}`)
+      .get<User>(
+        `https://api.github.com/search/users?q=${searchString}&per_page=20&page=${pageNumber}`
+      )
       .subscribe({
         next: (resData) => {
           this.userApiResult.set(resData);
@@ -66,6 +71,14 @@ export class AppComponent {
   }
   onUserSelected(selectedItem: UserItem) {
     this.selectedUser.set(selectedItem);
+  }
+
+  onRepoPageChange(pageNumber: number) {
+    this.searchForRepository(this.searchText, pageNumber);
+  }
+
+  onUserPageChange(pageNumber: number) {
+    this.searchForUser(this.searchText, pageNumber);
   }
 
   clearSelectedItem() {

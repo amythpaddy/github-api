@@ -1,10 +1,20 @@
 @if (reposData) { @if(!reposData.total_count){
-<h3>No repository found</h3>
-}@else {@for (repo of reposData.items; track repo.id) {
-<div class="information" (click)="onRepoSelected(repo)">
-  <span class="title">{{ repo.name }}</span>
-  <span class="sub">{{ repo.git_url }}</span>
-</div>
-}} } @else {
-<p>no data to show</p>
+  <h3>No repository found</h3>
+}
+@else {
+  @for (repo of reposData.items; track repo.id) {
+    <div class="information" (click)="onRepoSelected(repo)">
+      <span class="title">{{ repo.name }}</span>
+      <span class="sub">{{ repo.git_url }}</span>
+    </div>
+  }
+  <div class="paginator">
+    @if(currentPage>1){
+      <span class="changePage" (click)="onPageChange(currentPage-1)">Prev</span>
+    }<span class="pageInfo">{{currentPage}} of {{totalPages}}</span>
+    @if(currentPage<totalPages){
+      <span class="changePage" (click)="onPageChange(currentPage+1)">Next</span>
+      }
+  </div>
+  }
 }

@@ -11,8 +11,18 @@ import { RepoItem, Repo } from '../../model/repo.data';
 export class ReposComponent {
   @Input({ required: true }) reposData!: Repo;
   @Output() repoSelected = new EventEmitter();
+  @Output() changePage = new EventEmitter();
+  currentPage = 1;
+  get totalPages() {
+    return Math.ceil(this.reposData.total_count / 20);
+  }
 
   onRepoSelected(repo: RepoItem) {
     this.repoSelected.emit(repo);
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.changePage.emit(page);
   }
 }

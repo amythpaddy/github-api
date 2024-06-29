@@ -1,9 +1,19 @@
 @if(!usersData.total_count){
-<h3>No Users found</h3>
-}@else{ @for (user of usersData.items; track user.id) {
-<div class="information" (click)="onUserSelected(user)">
-  <img [src]="user.avatar_url" class="pro_image" /><span class="title">{{
-    user.login
-  }}</span>
-</div>
-} }
+  <h3>No Users found</h3>
+}@else{ 
+  @for (user of usersData.items; track user.id) {
+    <div class="information" (click)="onUserSelected(user)">
+      <img [src]="user.avatar_url" class="pro_image" /><span class="title">{{
+        user.login
+      }}</span>
+    </div>
+  }
+  <div class="paginator">
+    @if(currentPage>1){
+      <span class="changePage" (click)="onPageChange(currentPage-1)">Prev</span>
+    }<span class="pageInfo">{{currentPage}} of {{totalPages}}</span>
+    @if(currentPage<totalPages){
+      <span class="changePage" (click)="onPageChange(currentPage+1)">Next</span>
+      }
+  </div>
+}

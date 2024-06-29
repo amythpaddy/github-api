@@ -24,3 +24,14 @@
   font-size: 15px;
   color: #fff;
 }
+
+.changePage {
+  color: rgb(65, 65, 167);
+  cursor: pointer;
+}
+
+.pageInfo {
+  font-weight: bold;
+  color: #222;
+  margin: 0 1rem;
+}
