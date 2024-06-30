@@ -1,11 +1,18 @@
 <app-search (searchFor)="onSearchClicked($event)" />
 <div class="container">
-  @if (repoApiResult()) {<app-repos
+  @if(repoAPIState==APIStates.ERROR){
+  <span class="segment">Error fetching data. Try again</span>
+  } @else if (repoApiResult()) {
+  <app-repos
+    class="segment"
     [reposData]="repoApiResult()!"
     (repoSelected)="onRepoSelected($event)"
     (changePage)="onRepoPageChange($event)"
-  />} @if(userApiResult()){
+  />} @if(userAPIState==APIStates.ERROR){
+  <span class="segment">Error fetching data. Try again</span>
+  }@else if(userApiResult()){
   <app-users
+    class="segment"
     [usersData]="userApiResult()!"
     (userSelected)="onUserSelected($event)"
     (changePage)="onUserPageChange($event)"

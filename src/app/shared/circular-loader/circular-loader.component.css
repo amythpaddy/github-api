@@ -1,0 +1,15 @@
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+  width: fit-content;
+  display: block;
+  font-size: 40px;
+}
